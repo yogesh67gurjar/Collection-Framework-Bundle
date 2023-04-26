@@ -58,25 +58,25 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
         integerStringHashMap = new HashMap<>();
         integerModelClassHashMap = new HashMap<>();
 
-        if (this.getArguments() != null) {
+        if (getArguments() != null) {
 
-            i = this.getArguments().getInt("int", 0);
-            d = this.getArguments().getDouble("double", 0);
-            c = this.getArguments().getChar("char", ' ');
-            str = this.getArguments().getString("string");
+            i = getArguments().getInt("int", 0);
+            d = getArguments().getDouble("double", 0);
+            c = getArguments().getChar("char", ' ');
+            str = getArguments().getString("string");
 
-            listOfInteger = this.getArguments().getIntegerArrayList("listOfInt");
-            listOfInteger2 = (List<Integer>) this.getArguments().getSerializable("serializableListOfInt");
-            listOfModel = (List<ModelClass>) this.getArguments().getSerializable("serializableListOfModel");
+            listOfInteger = getArguments().getIntegerArrayList("listOfInt");
+            listOfInteger2 = (List<Integer>) getArguments().getSerializable("serializableListOfInt");
+            listOfModel = (List<ModelClass>) getArguments().getSerializable("serializableListOfModel");
 
-            integerHashSet = (HashSet<Integer>) this.getArguments().getSerializable("serializableIntegerHashSet");
-            modelClassHashSet = (HashSet<ModelClass>) this.getArguments().getSerializable("serializableModelClassHashSet");
+            integerHashSet = (HashSet<Integer>) getArguments().getSerializable("serializableIntegerHashSet");
+            modelClassHashSet = (HashSet<ModelClass>) getArguments().getSerializable("serializableModelClassHashSet");
 
-            stringLinkedList = new LinkedList<>((ArrayList<String>) this.getArguments().getSerializable("serializableStringLinkedList"));
-            modelClassLinkedList = new LinkedList<>((ArrayList<ModelClass>) this.getArguments().getSerializable("serializableModelClassLinkedList"));
+            stringLinkedList = new LinkedList<>((ArrayList<String>) getArguments().getSerializable("serializableStringLinkedList"));
+            modelClassLinkedList = new LinkedList<>((ArrayList<ModelClass>) getArguments().getSerializable("serializableModelClassLinkedList"));
 
-            integerStringHashMap = (HashMap<Integer, String>) this.getArguments().getSerializable("serializableIntegerStringHashMap");
-            integerModelClassHashMap = (HashMap<Integer, ModelClass>) this.getArguments().getSerializable("serializableIntegerModelClassHashMap");
+            integerStringHashMap = (HashMap<Integer, String>) getArguments().getSerializable("serializableIntegerStringHashMap");
+            integerModelClassHashMap = (HashMap<Integer, ModelClass>) getArguments().getSerializable("serializableIntegerModelClassHashMap");
 
 
             Log.e(TAG + "int", String.valueOf(i));
