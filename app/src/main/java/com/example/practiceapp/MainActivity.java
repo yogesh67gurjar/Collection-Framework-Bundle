@@ -1,16 +1,20 @@
 package com.example.practiceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import android.view.Display;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.practiceapp.Fragments.BottomSheetFragment;
+import com.example.practiceapp.Fragments.Faltu;
 import com.example.practiceapp.Model.ModelClass;
 import com.example.practiceapp.databinding.ActivityMainBinding;
-
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     HashMap<Integer, String> integerStringHashMap;
     HashMap<Integer, ModelClass> integerModelClassHashMap;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+        bundle = new Bundle();
         listOfInteger = new ArrayList<>();
         listOfModel = new ArrayList<>();
         integerHashSet = new HashSet<>();
@@ -46,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         modelClassLinkedList = new LinkedList<>();
         integerStringHashMap = new HashMap<>();
         integerModelClassHashMap = new HashMap<>();
-
 
         listOfInteger.add(1);
         listOfInteger.add(2);
@@ -89,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         integerModelClassHashMap.put(2, new ModelClass("shubham", "7000562591"));
         integerModelClassHashMap.put(3, new ModelClass("sakshi", "1234567890"));
         integerModelClassHashMap.put(4, new ModelClass("pragati", "0987654321"));
+        bundleMeValuesDaalo();
 
 
         binding.tv.setOnClickListener(new View.OnClickListener() {
@@ -96,33 +103,58 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Tabs.class);
 
-                Bundle bundle = new Bundle();
-                bundle.putInt("int", 1);
-                bundle.putDouble("double", 3.14159);
-                bundle.putChar("char", 'c');
-                bundle.putString("string", "yogesh");
-
-                //  ArrayList (integer and model)
-                bundle.putIntegerArrayList("listOfInt", listOfInteger);
-                bundle.putSerializable("serializableListOfInt", listOfInteger);
-                bundle.putSerializable("serializableListOfModel", listOfModel);
-
-                //  HashSet (integer and model)
-                bundle.putSerializable("serializableIntegerHashSet", integerHashSet);
-                bundle.putSerializable("serializableModelClassHashSet", modelClassHashSet);
-
-                //  LinkedList (String and model)
-                bundle.putSerializable("serializableStringLinkedList", (new ArrayList<>(stringLinkedList)));
-                bundle.putSerializable("serializableModelClassLinkedList", new ArrayList<>(modelClassLinkedList));
-
-                //  HashMap (integer,String and integer,model)
-                bundle.putSerializable("serializableIntegerStringHashMap", integerStringHashMap);
-                bundle.putSerializable("serializableIntegerModelClassHashMap", integerModelClassHashMap);
-
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
+
+        binding.openBottomSheetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MainActivity.this);
+                bottomSheetDialog.setContentView(R.layout.fragment_bottom_sheet);
+                BottomSheetDialogFragment hao = new BottomSheetFragment();
+                hao.setArguments(bundle);
+                hao.show(getSupportFragmentManager(), hao.getTag());
+            }
+        });
+
+        binding.addFragmentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Faltu faltu = new Faltu();
+                faltu.setArguments(bundle);
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.add(R.id.frameLayout, faltu).commit();
+            }
+        });
+
+
+    }
+
+    private void bundleMeValuesDaalo() {
+        bundle.putInt("int", 1);
+        bundle.putDouble("double", 3.14159);
+        bundle.putChar("char", 'c');
+        bundle.putString("string", "yogesh");
+
+        //  ArrayList (integer and model)
+        bundle.putIntegerArrayList("listOfInt", listOfInteger);
+        bundle.putSerializable("serializableListOfInt", listOfInteger);
+        bundle.putSerializable("serializableListOfModel", listOfModel);
+
+        //  HashSet (integer and model)
+        bundle.putSerializable("serializableIntegerHashSet", integerHashSet);
+        bundle.putSerializable("serializableModelClassHashSet", modelClassHashSet);
+
+        //  LinkedList (String and model)
+        bundle.putSerializable("serializableStringLinkedList", (new ArrayList<>(stringLinkedList)));
+        bundle.putSerializable("serializableModelClassLinkedList", new ArrayList<>(modelClassLinkedList));
+
+        //  HashMap (integer,String and integer,model)
+        bundle.putSerializable("serializableIntegerStringHashMap", integerStringHashMap);
+        bundle.putSerializable("serializableIntegerModelClassHashMap", integerModelClassHashMap);
+
     }
 
 
