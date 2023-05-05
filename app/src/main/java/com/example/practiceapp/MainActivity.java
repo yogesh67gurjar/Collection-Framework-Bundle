@@ -128,11 +128,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.add(R.id.frameLayout, faltu).commit();
             }
         });
-
-
     }
 
     private void bundleMeValuesDaalo() {
+        //  primary data types
         bundle.putInt("int", 1);
         bundle.putDouble("double", 3.14159);
         bundle.putChar("char", 'c');
@@ -154,8 +153,5 @@ public class MainActivity extends AppCompatActivity {
         //  HashMap (integer,String and integer,model)
         bundle.putSerializable("serializableIntegerStringHashMap", integerStringHashMap);
         bundle.putSerializable("serializableIntegerModelClassHashMap", integerModelClassHashMap);
-
     }
-
-
 }
